@@ -1,4 +1,4 @@
-package persistence;
+package rc.legostore.persistence;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
