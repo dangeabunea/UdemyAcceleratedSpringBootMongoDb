@@ -21,6 +21,11 @@ public class LegoStoreController {
         this.mongoTemplate.insert(legoSet);
     }
 
+    @PutMapping
+    public void update(@RequestBody LegoSet legoSet){
+        this.mongoTemplate.save(legoSet);
+    }
+
     @GetMapping("/all")
     public Collection<LegoSet> all(){
         Collection<LegoSet> legosets = this.mongoTemplate.findAll(LegoSet.class);
