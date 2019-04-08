@@ -1,11 +1,10 @@
 package rc.legostore.api;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rc.legostore.model.LegoSet;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("legostore/api")
@@ -20,5 +19,11 @@ public class LegoStoreController {
     @PostMapping
     public void insert(@RequestBody LegoSet legoSet){
         this.mongoTemplate.insert(legoSet);
+    }
+
+    @GetMapping("/all")
+    public Collection<LegoSet> all(){
+        Collection<LegoSet> legosets = this.mongoTemplate.findAll(LegoSet.class);
+        return legosets;
     }
 }
