@@ -1,6 +1,8 @@
 package rc.legostore.api;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 import rc.legostore.model.LegoSet;
 
@@ -24,6 +26,11 @@ public class LegoStoreController {
     @PutMapping
     public void update(@RequestBody LegoSet legoSet){
         this.mongoTemplate.save(legoSet);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id){
+        this.mongoTemplate.remove(new Query(Criteria.where("id").is(id)), LegoSet.class);
     }
 
     @GetMapping("/all")
