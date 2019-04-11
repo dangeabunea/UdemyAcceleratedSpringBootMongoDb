@@ -15,4 +15,7 @@ public interface LegoSetRepository extends MongoRepository<LegoSet, String> {
 
     @Query("{'delivery.deliveryFee' : {$lt : ?0}}")
     Collection<LegoSet> findAllByDeliveryPriceLessThan(int price);
+
+    @Query("{'reviews.rating' : {$eq : 10}}")
+    Collection<LegoSet> findAllByGreatReviews();
 }

@@ -58,4 +58,9 @@ public class LegoStoreController {
     public Collection<LegoSet> byDeliveryFeeLessThan(@PathVariable int price){
         return this.legoSetRepository.findAllByDeliveryPriceLessThan(price);
     }
+
+    @GetMapping("greatReviews")
+    public Collection<LegoSet> byGreatReviews(){
+        return this.legoSetRepository.findAllByGreatReviews();
+    }
 }
