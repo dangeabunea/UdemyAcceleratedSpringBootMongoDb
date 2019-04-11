@@ -2,6 +2,7 @@ package rc.legostore.api;
 
 import org.springframework.web.bind.annotation.*;
 import rc.legostore.model.LegoSet;
+import rc.legostore.model.LegoSetDifficulty;
 import rc.legostore.persistence.LegoSetRepository;
 
 import java.util.Collection;
@@ -46,5 +47,10 @@ public class LegoStoreController {
     @GetMapping("/byTheme/{theme}")
     public Collection<LegoSet> byTheme(@PathVariable String theme){
         return this.legoSetRepository.findAllByThemeContains(theme);
+    }
+
+    @GetMapping("hardThatStartWithM")
+    public Collection<LegoSet> hardThatStartWithM(){
+        return this.legoSetRepository.findAllByDifficultyAndNameStartsWith(LegoSetDifficulty.HARD, "M");
     }
 }
