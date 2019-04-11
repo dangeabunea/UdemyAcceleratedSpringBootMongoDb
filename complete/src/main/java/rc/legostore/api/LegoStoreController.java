@@ -5,6 +5,7 @@ import rc.legostore.model.LegoSet;
 import rc.legostore.persistence.LegoSetRepository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("legostore/api")
@@ -34,5 +35,11 @@ public class LegoStoreController {
     public Collection<LegoSet> all(){
         Collection<LegoSet> legosets = this.legoSetRepository.findAll();
         return legosets;
+    }
+
+    @GetMapping("/{id}")
+    public LegoSet byId(@PathVariable String id){
+        LegoSet legoSet = this.legoSetRepository.findById(id).orElse(null);
+        return legoSet;
     }
 }
