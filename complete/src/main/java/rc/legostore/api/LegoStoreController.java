@@ -42,4 +42,9 @@ public class LegoStoreController {
         LegoSet legoSet = this.legoSetRepository.findById(id).orElse(null);
         return legoSet;
     }
+
+    @GetMapping("/byTheme/{theme}")
+    public Collection<LegoSet> byTheme(@PathVariable String theme){
+        return this.legoSetRepository.findAllByThemeContains(theme);
+    }
 }
