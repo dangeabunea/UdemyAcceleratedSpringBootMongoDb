@@ -1,7 +1,6 @@
 package rc.legostore.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
@@ -26,6 +25,8 @@ public class LegoSet {
 
     @Field("delivery")
     private DeliveryInfo deliveryInfo;
+
+    protected LegoSet(){}
 
     public LegoSet(String name,
                    String theme,

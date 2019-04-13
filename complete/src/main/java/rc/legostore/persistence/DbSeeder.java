@@ -11,8 +11,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 
-
-//@Service
+@Service
 public class DbSeeder implements CommandLineRunner {
     private LegoSetRepository legoSetRepository;
 
