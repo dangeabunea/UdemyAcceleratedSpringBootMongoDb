@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -15,8 +16,10 @@ import java.util.Collections;
 public class LegoSet {
     @Id
     private String id;
+    @TextIndexed
     private String name;
     private LegoSetDifficulty difficulty;
+    @TextIndexed
     @Indexed(direction = IndexDirection.ASCENDING)
     private String theme;
     private Collection<ProductReview> reviews = new ArrayList<>();

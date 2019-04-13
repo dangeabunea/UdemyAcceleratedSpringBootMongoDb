@@ -3,6 +3,7 @@ package rc.legostore.api;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.web.bind.annotation.*;
 import rc.legostore.model.AvgRatingModel;
 import rc.legostore.model.LegoSet;
@@ -85,5 +86,11 @@ public class LegoStoreController {
 
         // pass the query to findAll()
         return (Collection<LegoSet>) this.legoSetRepository.findAll(bestBuysFilter);
+    }
+
+    @GetMapping("fullTextSearch/{text}")
+    public Collection<LegoSet> fullTextSearch(@PathVariable String text){
+        TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(text);
+        return this.legoSetRepository.findAllBy(textCriteria);
     }
 }

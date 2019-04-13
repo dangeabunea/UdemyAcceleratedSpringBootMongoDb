@@ -1,6 +1,9 @@
 package rc.legostore.model;
 
+import org.springframework.data.mongodb.core.index.TextIndexed;
+
 public class ProductReview {
+    @TextIndexed
     private String userName;
     private int rating;
 

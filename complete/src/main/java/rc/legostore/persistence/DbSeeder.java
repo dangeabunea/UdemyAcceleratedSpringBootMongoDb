@@ -14,16 +14,15 @@ import java.util.Collection;
 
 @Service
 public class DbSeeder implements CommandLineRunner {
+    private LegoSetRepository legoSetRepository;
 
-    private MongoTemplate mongoTemplate;
-
-    public DbSeeder(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
+    public DbSeeder(LegoSetRepository legoSetRepository) {
+        this.legoSetRepository = legoSetRepository;
     }
 
     @Override
     public void run(String... args) {
-        this.mongoTemplate.dropCollection(LegoSet.class);
+        this.legoSetRepository.deleteAll();
 
 
         /*
@@ -78,6 +77,6 @@ public class DbSeeder implements CommandLineRunner {
 
         Collection<LegoSet> initialProducts = Arrays.asList(milleniumFalcon, mindstormsEve,mcLarenSenna,skyPolice);
 
-        this.mongoTemplate.insertAll(initialProducts);
+        this.legoSetRepository.insert(initialProducts);
     }
 }
