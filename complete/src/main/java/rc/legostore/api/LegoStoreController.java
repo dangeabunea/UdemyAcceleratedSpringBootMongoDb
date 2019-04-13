@@ -1,9 +1,12 @@
 package rc.legostore.api;
 
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import rc.legostore.model.LegoSet;
 import rc.legostore.model.LegoSetDifficulty;
+import rc.legostore.model.QLegoSet;
 import rc.legostore.persistence.LegoSetRepository;
 
 import java.util.Collection;
@@ -64,5 +67,21 @@ public class LegoStoreController {
     @GetMapping("greatReviews")
     public Collection<LegoSet> byGreatReviews(){
         return this.legoSetRepository.findAllByGreatReviews();
+    }
+
+    @GetMapping("bestBuys")
+    public Collection<LegoSet> bestBuys(){
+        // build query
+        QLegoSet query = new QLegoSet("query");
+        BooleanExpression inStockFilter =  query.deliveryInfo.inStock.isTrue();
+        Predicate smallDeliveryFeeFilter =  query.deliveryInfo.deliveryFee.lt(50);
+        Predicate hasGreatReviews =  query.reviews.any().rating.eq(10);
+
+        Predicate bestBuysFilter = inStockFilter
+                .and(smallDeliveryFeeFilter)
+                .and(hasGreatReviews);
+
+        // pass the query to findAll()
+        return (Collection<LegoSet>) this.legoSetRepository.findAll(bestBuysFilter);
     }
 }
