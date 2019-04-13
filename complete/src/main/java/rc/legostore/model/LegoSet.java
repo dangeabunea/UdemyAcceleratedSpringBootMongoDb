@@ -41,7 +41,6 @@ public class LegoSet {
         }
     }
 
-    @Transient
     private int nbParts;
 
     public String getId() {
