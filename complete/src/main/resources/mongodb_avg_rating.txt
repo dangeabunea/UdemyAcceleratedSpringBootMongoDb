@@ -1,0 +1,6 @@
+db.legosets.aggregate([{
+        $project : {
+                legoSetName: "$name",
+                avgRating : {$avg : "$reviews.rating"}
+            }
+        }])
