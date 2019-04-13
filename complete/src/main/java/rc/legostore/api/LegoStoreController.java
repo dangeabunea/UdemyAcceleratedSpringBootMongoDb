@@ -4,12 +4,14 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+import rc.legostore.model.AvgRatingModel;
 import rc.legostore.model.LegoSet;
 import rc.legostore.model.LegoSetDifficulty;
 import rc.legostore.model.QLegoSet;
 import rc.legostore.persistence.LegoSetRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("legostore/api")
