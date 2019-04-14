@@ -1,5 +1,6 @@
 package rc.legostore.persistence;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class DbSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) {
         this.legoSetRepository.deleteAll();
-
+        this.mongoTemplate.dropCollection(PaymentOptions.class);
 
         /*
         Payment Options
