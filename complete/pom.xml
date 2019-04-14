@@ -52,6 +52,14 @@
             <artifactId>mongobee</artifactId>
             <version>0.13</version>
         </dependency>
+
+        <!-- Embedded MongoDB for Testing -->
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
